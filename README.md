@@ -7,6 +7,10 @@
 L’application est conçue selon le **modèle MVC (Model – View – Controller)** pour séparer clairement les responsabilités, facilitant la maintenance et l’évolution du projet.
 
 ```
+## Architecture MVC
+
+![Architecture MVC PHP](docs/architecture.png)
+
 
 projet-mvc/
 │

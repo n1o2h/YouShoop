@@ -2,6 +2,8 @@
 
 namespace App\migrations;
 
+use App\core\Application;
+
 /**
  * mogrations
  */
@@ -9,11 +11,24 @@ class  m0001_initial
 {
     public function up()
     {
-        echo "applying migrations ";
+        $db = Application::$app->db;
+        $sql = "CREATE TABLE users (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                email VARCHAR(255) NOT NULL UNIQUE,
+                password VARCHAR(255) NOT NULL,
+                firstname VARCHAR(255) NOT NULL,
+                lastname VARCHAR(255) NOT NULL,
+                role TINYINT NOT NULL DEFAULT 0,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                ) ENGINE=InnoDB;";
+        $db->pdo->exec($sql);
     }
     public function down()
     {
-        echo "Down migrations ";
+
+        $db = Application::$app->db;
+        $sql = "DROP TABLE users;";
+        $db->pdo->exec($sql);
     }
 
 }

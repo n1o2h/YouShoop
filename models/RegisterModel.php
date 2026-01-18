@@ -18,7 +18,7 @@ class RegisterModel extends  Model
 
     public function register() : void
     {
-        echo "creating new user";
+
     }
 
     public function rules(): array

@@ -7,30 +7,15 @@ use App\core\Request;
 
 class SiteController extends  Controler
 {
-    public  function handelContact(Request $request)
+    public  function home(Request $request)
     {
-         $body = $request->getBody();
-         echo "<pre>";
-         var_dump($body);
-         echo '</pre>';
-
-         return "ddd";
-    }
-    public  function home()
-    {
-        $params = [
-            'name' => "NohailaAitHammad"
-        ];
-        return $this->render('home', $params);
-
+        return $this->render('/home', []);
     }
     public  function front()
     {
-        $params = [
-            'name' => "NohailaAitHammad"
-        ];
-        return $this->render('admin', $params);
+        return $this->render('user/dashboard', []);
 
     }
+
 
 }

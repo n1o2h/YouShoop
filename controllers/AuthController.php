@@ -34,7 +34,7 @@ class AuthController extends  Controler
     }
     public function register(Request $request)
     {
-         $user = new User();
+        $user = new User();
         if($request->isPost()) {
             $user->loadData($request->getBody());
             if($user->validate() && $user->save()){

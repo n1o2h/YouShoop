@@ -30,7 +30,7 @@ abstract class DBModel extends  Model
     }
     public static function prepare($sql)
     {
-        return Application::$app->db->pdo->prepare($sql);
+        return Application::$app->db->prepare($sql);
     }
 
     public  static function findOne($where) // [email => test@gmail.com , firstname => nouhaila]

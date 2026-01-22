@@ -6,10 +6,12 @@ use PDO;
 
 class Database
 {
+
+    private static ?Database $instance = null;
     public PDO $pdo;
 
 
-    public function __construct(array $config)
+    private function __construct(array $config)
     {
         $dsn = $config['dsn'] ?? '';
         $user = $config['user'] ?? '';
@@ -21,6 +23,13 @@ class Database
         }catch (\PDOException $e){
             echo 'error de la base de donne' . $e->getMessage();
         }
+    }
+    public static function getConnexion(array $config): ?Database
+    {
+        if(self::$instance === null){
+            self::$instance = new Database($config);
+        }
+        return self::$instance;
     }
 
     public function  applyMigration()

@@ -48,6 +48,33 @@ abstract class DBModel extends  Model
         return $statement->fetch();
     }
 
+    public static function findAll()
+    {
+        $tableName = static::tableName();
+        $statement = self::prepare("SELECT * FROM $tableName");
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_CLASS, static::class);
+        return $statement->fetchAll();
+    }
+
+    public  static function delete($where) // [email => test@gmail.com , firstname => nouhaila]
+    {
+        //static will call the current class the findOne exist
+        $tableName = static::tableName();
+        $attributes = array_keys($where);
+        $sql = implode("AND", array_map(fn($attr) => "$attr = :$attr", $attributes));
+        $statement = self::prepare("DELETE FROM $tableName WHERE $sql");
+        foreach ($where as $key => $item){
+            $statement->bindValue(":$key", $item);
+        }
+        return $statement->execute();
+    }
+
+    public function deleteInstance() {
+        return self::delete([static::primaryKey() => $this->{static::primaryKey()}]);
+    }
+
+
 
 
 

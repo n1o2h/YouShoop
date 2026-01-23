@@ -44,4 +44,15 @@ $app->router->get('/logout',array(AuthController::class, 'logout'));
 
 /* profile */
 $app->router->get('/profile', array(AuthController::class, 'profile'));
+
+/* category */
+$app->router->get('/admin/categories', [\App\controllers\CategoryController::class, 'index']);
+$app->router->get('/admin/categories/create', [\App\controllers\CategoryController::class, 'create']);
+$app->router->post('/admin/categories/store', [\App\controllers\CategoryController::class, 'store']);
+$app->router->get('/admin/categories/edit', [\App\controllers\CategoryController::class, 'edit']);
+$app->router->post('/admin/categories/update', [\App\controllers\CategoryController::class, 'update']);
+$app->router->get('/admin/categories/delete', [\App\controllers\CategoryController::class, 'delete']);
 $app->run();
+
+
+

@@ -2,27 +2,37 @@
 
 namespace App\models;
 
-class Category
+use App\core\DBModel;
+
+class Category extends DBModel
 {
-    private ?int $id;
-    private string $name;
-    private string $description;
-    private array $listProducts;
+    public int $id;
+    public string $name = '';
+    public string $description = '';
 
-    public function __construct(string $name, string $description)
+    public function __construct() {
+    }
+    public static function tableName(): string
     {
-        $this->name = $name;
-        $this->description = $description;
+        return 'categories';
     }
 
-    public function getId(): ?int
+    public function attributes(): array
     {
-        return $this->id;
+        return ['name', 'description'];
     }
 
-    public function setId(?int $id): void
+    public static function primaryKey(): string
     {
-        $this->id = $id;
+        return 'id';
+    }
+
+    public function rules(): array
+    {
+        return [
+            'name' => [self::RULE_REQUIRED],
+            'description' => [self::RULE_REQUIRED],
+        ];
     }
 
     public function getName(): string
@@ -45,5 +55,13 @@ class Category
         $this->description = $description;
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
 }

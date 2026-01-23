@@ -20,6 +20,7 @@ abstract  class Model
     public string $firstname;
     public string $lastname;
     public int $role;
+    public string $name;
     public string $created_at;
     public const RULE_REQUIRED = 'required';
     public const RULE_EMAIL = 'email';
@@ -50,7 +51,7 @@ abstract  class Model
     public function validate(): bool
     {
         foreach ($this->rules() as $attribue => $rules){
-            $value = $this->{$attribue};
+            $value = $this->{$attribue} ?? null;
 
             foreach ($rules as $rule){
                 $ruleName = $rule;

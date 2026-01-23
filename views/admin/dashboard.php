@@ -59,9 +59,13 @@ use App\core\Application;
             <h1 class="text-3xl font-black text-slate-900 uppercase tracking-tighter">Catalogue <span class="text-blue-600">Produits</span></h1>
             <p class="text-gray-500 text-sm font-medium">Gestion du stock et des références (US-12, 13, 14)</p>
         </div>
+        <a href="/admin/categories"  class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-2xl transition shadow-xl shadow-blue-500/20 flex items-center gap-2 uppercase text-xs tracking-widest">
+            <i class="ti ti-plus text-lg"></i> Voir Categories
+        </a>
         <button onclick="toggleModal('addProductModal')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-2xl transition shadow-xl shadow-blue-500/20 flex items-center gap-2 uppercase text-xs tracking-widest">
             <i class="ti ti-plus text-lg"></i> Nouveau Produit
         </button>
+
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">

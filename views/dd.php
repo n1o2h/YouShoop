@@ -7,7 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.46.0/tabler-icons.min.css">
-    <style> body { font-family: 'Inter', sans-serif; } </style>
+    <style> body {
+            font-family: 'Inter', sans-serif;
+        } </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -47,7 +49,9 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
                     <div class="relative">
-                        <input type="text" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="John Doe" required>
+                        <input type="text"
+                               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                               placeholder="John Doe" required>
                         <div class="absolute left-3 top-3.5 text-gray-400">
                             <i class="ti ti-user"></i>
                         </div>
@@ -57,7 +61,9 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Adresse Email</label>
                     <div class="relative">
-                        <input type="email" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="vous@exemple.com" required>
+                        <input type="email"
+                               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                               placeholder="vous@exemple.com" required>
                         <div class="absolute left-3 top-3.5 text-gray-400">
                             <i class="ti ti-mail"></i>
                         </div>
@@ -67,7 +73,9 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
                     <div class="relative">
-                        <input type="password" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="8 caractères min." required>
+                        <input type="password"
+                               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                               placeholder="8 caractères min." required>
                         <div class="absolute left-3 top-3.5 text-gray-400">
                             <i class="ti ti-lock"></i>
                         </div>
@@ -77,7 +85,9 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Confirmer mot de passe</label>
                     <div class="relative">
-                        <input type="password" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="••••••••" required>
+                        <input type="password"
+                               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                               placeholder="••••••••" required>
                         <div class="absolute left-3 top-3.5 text-gray-400">
                             <i class="ti ti-lock-check"></i>
                         </div>
@@ -85,13 +95,15 @@
                 </div>
 
                 <div class="flex items-center">
-                    <input id="terms" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                    <input id="terms" type="checkbox"
+                           class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                     <label for="terms" class="ml-2 block text-sm text-gray-900">
                         J'accepte les <a href="#" class="text-blue-600 hover:underline">conditions d'utilisation</a>
                     </label>
                 </div>
 
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition transform hover:scale-[1.02] shadow-lg shadow-blue-500/30">
+                <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition transform hover:scale-[1.02] shadow-lg shadow-blue-500/30">
                     S'inscrire
                 </button>
             </form>
@@ -102,6 +114,7 @@
             </div>
         </div>
     </div>
+
 </section>
 
 </body>

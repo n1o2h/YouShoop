@@ -234,3 +234,68 @@
         </div>
     </div>
 </section>
+<button onclick="toggleCart()" class="relative p-2 bg-gray-100 rounded-xl hover:bg-blue-50 transition">
+    <i class="ti ti-shopping-cart text-2xl text-slate-700"></i>
+    <span class="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] h-5 w-5 flex items-center justify-center rounded-full border-2 border-white font-bold">3</span>
+</button>
+
+<div id="cartOverlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity duration-300"></div>
+
+<div id="cartSidebar" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-[70] shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+
+    <div class="bg-slate-900 p-6 text-white relative overflow-hidden flex justify-between items-center">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-blue-600 blur-3xl opacity-20 -mr-10 -mt-10"></div>
+        <h2 class="text-xl font-bold flex items-center gap-3 relative z-10">
+            <i class="ti ti-shopping-cart text-blue-400"></i> Votre Panier
+        </h2>
+        <button onclick="toggleCart()" class="text-white hover:bg-white/10 p-2 rounded-full relative z-10 transition">
+            <i class="ti ti-x text-2xl"></i>
+        </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
+        <div class="bg-white p-4 rounded-2xl border border-gray-100 flex gap-4">
+            <div class="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center"><i class="ti ti-device-laptop text-2xl text-gray-400"></i></div>
+            <div class="flex-1">
+                <h4 class="font-bold text-sm text-slate-800 uppercase">MacBook Pro M3</h4>
+                <p class="text-blue-600 font-bold">1 599 €</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-6 border-t bg-white space-y-4">
+        <div class="flex justify-between font-bold text-lg text-slate-900">
+            <span>Total:</span>
+            <span>1 599 €</span>
+        </div>
+        <button class="w-full bg-blue-600 text-white font-bold py-4 rounded-2xl hover:bg-blue-700 transition shadow-lg shadow-blue-500/30">
+            Finaliser la commande
+        </button>
+        <a href="/cart" class="block text-center text-sm font-bold text-gray-400 hover:text-blue-600">Voir le panier complet</a>
+    </div>
+</div>
+
+<script>
+    function toggleCart() {
+        const sidebar = document.getElementById('cartSidebar');
+        const overlay = document.getElementById('cartOverlay');
+
+        if (sidebar.classList.contains('translate-x-full')) {
+            // OUVRIR
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.add('opacity-100');
+                sidebar.classList.remove('translate-x-full');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        } else {
+            // FERMER
+            sidebar.classList.add('translate-x-full');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+            document.body.style.overflow = 'auto';
+        }
+    }
+    // Fermer au clic sur le fond
+    document.getElementById('cartOverlay').addEventListener('click', toggleCart);
+</script>

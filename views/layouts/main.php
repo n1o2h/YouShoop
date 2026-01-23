@@ -16,6 +16,7 @@ use App\core\Application;
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
         /* Animation douce pour l'apparition */
@@ -33,6 +34,23 @@ use App\core\Application;
                 transform: translateY(0);
             }
         }
+
+             /* Styles spécifiques pour la cohérence des formulaires PHP et du design */
+         .custom-form-tech label {
+             display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;
+         }
+        .custom-form-tech input {
+            width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;
+            background-color: #f8fafc; transition: all 0.3s ease; outline: none;
+        }
+        .custom-form-tech input:focus {
+            border-color: #2563eb; background-color: #fff; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+        .custom-form-tech button {
+            width: 100%; background-color: #2563eb; color: white; font-weight: 700; padding: 0.875rem;
+            border-radius: 0.75rem; transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
+
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -44,7 +62,7 @@ use App\core\Application;
             <div class="bg-blue-600 text-white p-1 rounded-lg">
                 <i class="ti ti-bolt text-xl"></i>
             </div>
-            Electro<span class="text-blue-600">Shop</span>
+            You<span class="text-blue-600">Shop</span>
         </a>
 
         <div class="hidden md:block flex-1 mx-12">
@@ -73,16 +91,18 @@ use App\core\Application;
         </div>
         <?php else: ?>
         <div class="flex items-center gap-6">
+            <a href="/profile" class="flex items-center gap-2 hover:text-blue-600 transition font-medium text-sm">
+                <i class="ti ti-user-circle text-xl">
+                </i>
+                <span class="hidden sm:block"><?= Application::$app->user ? Application::$app->user->getDisplayName() : 'User' ?></span>
+            </a>
             <a href="/logout" class="flex items-center gap-2 hover:text-blue-600 transition font-medium text-sm">
-                <i class="ti ti-user-circle text-xl"></i>
                 <span class="hidden sm:block">Déconnexion</span>
             </a>
-            <a href="#" class="relative hover:text-blue-600 transition">
-                <div class="p-2 bg-gray-100 rounded-full hover:bg-blue-50 transition">
-                    <i class="ti ti-shopping-cart text-xl"></i>
-                </div>
-                <span class="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full border-2 border-white">3</span>
-            </a>
+            <button onclick="toggleCart()" class="relative p-2.5 bg-gray-100  rounded-2xl hover:bg-blue-600 transition-all shadow-xl shadow-slate-900/10 group">
+                <i class="ti ti-shopping-cart text-xl"></i>
+                <span class="absolute -top-1.5 -right-1.5 bg-blue-500 text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full border-2 border-white group-hover:scale-110 transition">3</span>
+            </button>
         </div>
         <?php endif; ?>
     </div>
@@ -96,4 +116,31 @@ use App\core\Application;
 
     {{content}}
 </div>
+
+<script>
+    function toggleCart() {
+        const sidebar = document.getElementById('cartSidebar');
+        const overlay = document.getElementById('cartOverlay');
+
+        if (sidebar.classList.contains('translate-x-full')) {
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.add('opacity-100');
+                sidebar.classList.remove('translate-x-full');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        } else {
+            sidebar.classList.add('translate-x-full');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 500);
+            document.body.style.overflow = '';
+        }
+    }
+    document.getElementById('cartOverlay').addEventListener('click', toggleCart);
+</script>
+
+</body>
+</html>
 

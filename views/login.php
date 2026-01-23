@@ -4,7 +4,6 @@
  */
 ?>
 
-<div class="min-h-[80vh] flex items-center justify-center p-6">
     <div class="bg-white w-full max-auto max-w-md rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
 
         <div class="bg-slate-900 p-8 text-center relative overflow-hidden">
@@ -44,7 +43,6 @@
             </div>
         </div>
     </div>
-</div>
 
 <style>
     /* IMPORTANT : Pour que ton objet Form::$field() hérite du look Tech,

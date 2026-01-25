@@ -1,5 +1,13 @@
 <?php
 use App\core\Application;
+use App\models\Category;
+use App\models\Product;
+
+/**
+ * @var Product[] $products
+ * @var Category[] $categories
+ */
+var_dump($products);
 ?>
 <div class="flex justify-between items-center mb-10 bg-white p-4 rounded-3xl border border-gray-100 shadow-sm">
     <div class="flex items-center gap-4">
@@ -83,6 +91,8 @@ use App\core\Application;
         </div>
     </div>
 
+
+
     <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
         <table class="w-full text-left">
             <thead class="bg-slate-900 text-white">
@@ -95,57 +105,47 @@ use App\core\Application;
             </tr>
             </thead>
             <tbody class="divide-y divide-gray-50 font-medium text-slate-700">
-            <tr class="hover:bg-gray-50/50 transition">
-                <td class="p-6 flex items-center gap-4">
-                    <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-slate-400">
-                        <i class="ti ti-device-laptop text-xl"></i>
-                    </div>
-                    <div>
-                        <span class="block font-bold text-slate-900">MacBook Pro 14" M3</span>
-                        <span class="text-[10px] text-gray-400 uppercase">REF: TECH-992</span>
-                    </div>
-                </td>
-                <td class="p-6"><span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold">Laptops</span></td>
-                <td class="p-6 font-bold">1 599,00 €</td>
-                <td class="p-6">
-                    <div class="flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                        <span>24 en stock</span>
-                    </div>
-                </td>
-                <td class="p-6 text-right space-x-2">
-                    <button class="p-2 hover:bg-blue-50 text-blue-600 rounded-lg transition" title="Modifier">
-                        <i class="ti ti-edit text-xl"></i>
-                    </button>
-                    <button class="p-2 hover:bg-red-50 text-red-500 rounded-lg transition" title="Supprimer">
-                        <i class="ti ti-trash text-xl"></i>
-                    </button>
-                </td>
-            </tr>
-
-            <tr class="hover:bg-gray-50/50 transition">
-                <td class="p-6 flex items-center gap-4">
-                    <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-slate-400">
-                        <i class="ti ti-headset text-xl"></i>
-                    </div>
-                    <span class="font-bold text-slate-900">Sony WH-1000XM5</span>
-                </td>
-                <td class="p-6"><span class="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-xs font-bold">Audio</span></td>
-                <td class="p-6 font-bold">320,00 €</td>
-                <td class="p-6">
-                    <div class="flex items-center gap-2 text-orange-600">
-                        <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                        <span>2 restants</span>
-                    </div>
-                </td>
-                <td class="p-6 text-right">
-                    <button class="p-2 hover:bg-blue-50 text-blue-600 rounded-lg transition"><i class="ti ti-edit text-xl"></i></button>
-                    <button class="p-2 hover:bg-red-50 text-red-500 rounded-lg transition"><i class="ti ti-trash text-xl"></i></button>
-                </td>
-            </tr>
+            <?php foreach ($products as $product): ?>
+                <tr class="hover:bg-gray-50/50 transition">
+                    <td class="p-6 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-slate-400">
+                            <i class="ti ti-device-laptop text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-slate-900"><?= htmlspecialchars($product->getName()) ?></span>
+                            <span class="text-[10px] text-gray-400 uppercase">REF: PROD-<?= $product->getId() ?></span>
+                        </div>
+                    </td>
+                    <td class="p-6">
+                    <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold">
+                        <?= htmlspecialchars($product->category->getName() ?? 'Indéfini') ?>
+                    </span>
+                    </td>
+                    <td class="p-6 font-bold"><?= number_format($product->getPrice(), 2, ',', ' ') ?> €</td>
+                    <td class="p-6">
+                        <div class="flex items-center gap-2 <?= $product->getStock() > 5 ? 'text-green-500' : 'text-orange-600' ?>">
+                            <span class="w-2 h-2 rounded-full <?= $product->getStock() > 5 ? 'bg-green-500' : 'bg-orange-500 animate-pulse' ?>"></span>
+                            <span><?= $product->getStock() ?> en stock</span>
+                        </div>
+                    </td>
+                    <td class="p-6 text-right space-x-2">
+                        <button class="p-2 hover:bg-blue-50 text-blue-600 rounded-lg transition" title="Modifier">
+                            <i class="ti ti-edit text-xl"></i>
+                        </button>
+                        <form action="/admin/products/delete" method="POST" style="display:inline;" onsubmit="return confirm('Supprimer ce produit ?')">
+                            <input type="hidden" name="id" value="<?= $product->getId() ?>">
+                            <button type="submit" class="p-2 hover:bg-red-50 text-red-500 rounded-lg transition" title="Supprimer">
+                                <i class="ti ti-trash text-xl"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
+
+
 </main>
 
 <div id="modalOverlay" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[100] hidden opacity-0 transition-opacity duration-300"></div>
@@ -167,20 +167,21 @@ use App\core\Application;
             <p class="text-slate-400 text-sm mt-1 relative z-10 uppercase tracking-widest">Référence Catalogue US-12</p>
         </div>
 
-        <form action="/admin/products/add" method="POST" class="p-8 custom-form-tech grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form action="/admin/products/store" method="POST" class="p-8 custom-form-tech grid grid-cols-1 md:grid-cols-2 gap-6">
 
             <div class="md:col-span-2">
                 <label>Désignation du produit</label>
                 <input type="text" name="name" placeholder="ex: MacBook Pro 14 M3..." required>
             </div>
-
             <div>
                 <label>Catégorie</label>
-                <select name="category" class="w-full p-3 rounded-xl border border-gray-100 bg-gray-50 focus:border-blue-600 outline-none transition font-semibold text-slate-700">
-                    <option value="laptops">PC Portables</option>
-                    <option value="smartphones">Smartphones</option>
-                    <option value="audio">Audio</option>
-                </select>
+                <label>
+                    <select name="category" class="w-full p-3 rounded-xl border border-gray-100 bg-gray-50 focus:border-blue-600 outline-none transition font-semibold text-slate-700">
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?= $category->getName() ?>"> <?= htmlspecialchars($category->getName()) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </label>
             </div>
 
             <div>
@@ -195,7 +196,7 @@ use App\core\Application;
 
             <div>
                 <label>Image (URL)</label>
-                <input type="text" name="image" placeholder="https://images.unsplash.com/...">
+                <input type="text" name="image_path" placeholder="https://images.unsplash.com/...">
             </div>
 
             <div class="md:col-span-2">
@@ -210,6 +211,7 @@ use App\core\Application;
                 </button>
             </div>
         </form>
+
     </div>
 </div>
 

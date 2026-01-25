@@ -2,6 +2,8 @@
 require dirname(__DIR__) . '/vendor/autoload.php';
 use App\controllers\AdminController;
 use App\controllers\AuthController;
+use App\controllers\CategoryController;
+use App\controllers\ProductController;
 use App\controllers\SiteController;
 use App\controllers\UserController;
 use App\core\Application;
@@ -46,12 +48,19 @@ $app->router->get('/logout',array(AuthController::class, 'logout'));
 $app->router->get('/profile', array(AuthController::class, 'profile'));
 
 /* category */
-$app->router->get('/admin/categories', [\App\controllers\CategoryController::class, 'index']);
-$app->router->get('/admin/categories/create', [\App\controllers\CategoryController::class, 'create']);
-$app->router->post('/admin/categories/store', [\App\controllers\CategoryController::class, 'store']);
-$app->router->get('/admin/categories/edit', [\App\controllers\CategoryController::class, 'edit']);
-$app->router->post('/admin/categories/update', [\App\controllers\CategoryController::class, 'update']);
-$app->router->get('/admin/categories/delete', [\App\controllers\CategoryController::class, 'delete']);
+$app->router->get('/admin/categories', [CategoryController::class, 'index']);
+$app->router->post('/admin/categories/store', [CategoryController::class, 'store']);
+$app->router->post('/admin/categories/update', [CategoryController::class, 'update']);
+$app->router->post('/admin/categories/delete', [CategoryController::class, 'delete']);
+
+/* product */
+
+$app->router->get('/admin/dashboard', [ProductController::class, 'index']);
+
+/* CRUD produits */
+$app->router->post('/admin/products/store', [ProductController::class, 'store']);
+$app->router->post('/admin/products/update', [ProductController::class, 'update']);
+$app->router->post('/admin/products/delete', [ProductController::class, 'delete']);
 $app->run();
 
 

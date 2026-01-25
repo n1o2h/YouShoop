@@ -2,30 +2,24 @@
 
 namespace App\models;
 
-class Product
+use App\core\DBModel;
+
+class Product extends  DBModel
 {
-    private ?int $id;
-    private string $name;
-    private string $description;
-    private string $status;
-    private float $price;
-    private string $imagePath;
-    private int $stock;
-    private array $commandeItem;
-    private Category $category;
-    private Admin $createdBy;
-    private array $pannierItem;
+    public int $id;
+    public string $name;
+    public string $description;
+    public string $status;
+    public float $price;
+    public string $imagePath;
+    public int $stock;
+    public array $commandeItem = [];
+    public ?Category $category = null;
+    public ?Admin $createdBy = null;
+    public array $pannierItem = [];
 
-    public function __construct(string $name, string $description, float $price, string $imagePath, int $stock, Category $category, Admin $createdBy)
+    public function __construct()
     {
-        $this->name = $name;
-        $this->description = $description;
-        $this->price = $price;
-        $this->imagePath = $imagePath;
-        $this->stock = $stock;
-        $this->category = $category;
-        $this->createdBy = $createdBy;
-
     }
 
 
@@ -139,4 +133,31 @@ class Product
         $this->pannierItem = $pannierItem;
     }
 
+    public static function tableName(): string
+    {
+        return 'products';
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'name','description', 'status', 'price', 'image_path', 'stock', 'category_id'
+        ];
+    }
+
+    public static function primaryKey(): string
+    {
+        return 'id';
+    }
+
+    public function rules(): array
+    {
+        return [
+            'name' => [self::RULE_REQUIRED],
+            'description' => [self::RULE_REQUIRED],
+            /*'image_path' => [self::RULE_REQUIRED],*/
+            'price' => [self::RULE_REQUIRED],
+            'stock' => [self::RULE_REQUIRED],
+        ];
+    }
 }

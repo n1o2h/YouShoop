@@ -41,6 +41,8 @@ class CategoryService
         $category->save();
         return $category;
     }
+
+
     public function deleteInstance(int $id) : bool
     {
         $category = Category::findOne(['id'=>$id]);

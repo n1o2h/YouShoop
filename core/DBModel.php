@@ -15,19 +15,42 @@ abstract class DBModel extends  Model
 
     public function save()
     {
-        $tableName = $this->tableName();
+        $tableName = static::tableName();
         $attributes = $this->attributes();
+
+
+        if (!empty($this->{static::primaryKey()})) {
+            $params = [];
+            foreach ($attributes as $attr) {
+                $params[] = "$attr = :$attr";
+            }
+
+            $sql = "UPDATE $tableName SET " . implode(', ', $params)
+                . " WHERE " . static::primaryKey() . " = :id";
+
+            $statement = self::prepare($sql);
+
+            foreach ($attributes as $attribute) {
+                $statement->bindValue(":$attribute", $this->{$attribute});
+            }
+            $statement->bindValue(':id', $this->{static::primaryKey()});
+
+            return $statement->execute();
+        }
+
         $params = array_map(fn($attr) => ":$attr", $attributes);
         $statement = self::prepare(
-            "INSERT INTO $tableName (".implode(',', $attributes).")
-                VALUES (".implode(',', $params).")
-                ");
-        foreach ($attributes as $attribute){
-            $statement->bindParam(":$attribute", $this->{$attribute});
+            "INSERT INTO $tableName (" . implode(',', $attributes) . ")
+         VALUES (" . implode(',', $params) . ")"
+        );
+
+        foreach ($attributes as $attribute) {
+            $statement->bindValue(":$attribute", $this->{$attribute});
         }
-        $statement->execute();
-        return true;
+
+        return $statement->execute();
     }
+
     public static function prepare($sql)
     {
         return Application::$app->db->prepare($sql);

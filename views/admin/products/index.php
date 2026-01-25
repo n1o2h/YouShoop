@@ -12,7 +12,7 @@ use App\models\Category;
     <main class="flex-1 p-10">
         <nav class="flex justify-between items-center mb-10 bg-white p-4 rounded-3xl border border-gray-100 shadow-sm">
             <div class="flex items-center gap-2 text-sm font-medium text-gray-400">
-                <a href="/admin/dashboard" class="hover:text-blue-600">Admin</a>
+                <a href="/admin" class="hover:text-blue-600">Admin</a>
                 <i class="ti ti-chevron-right text-xs"></i>
                 <span class="text-slate-900 font-bold">Catégories</span>
             </div>

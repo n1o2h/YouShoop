@@ -31,34 +31,35 @@ class CategoryController extends Controler
         return $this->redirect('/admin/categories');
     }
 
-    public function edit(Request $request)
+    /*public function edit(Request $request)
     {
         $id = $request->getBody()['id'] ?? null;
-        $category = $this->service->findOne($id);
-        return $this->render("admin/categories/edit", ['categories' => $category]);
-    }
+        $categories = $this->service->findAll();
+        $categoryEdit = $this->service->findOne($id);
+
+        return $this->render("admin/categories/index",
+            ['categories' => $categories,
+                'categoryEdit' => $categoryEdit
+            ]);
+    }*/
 
     public function update(Request $request)
     {
         $data = $request->getBody();
-        $id = $data['id'];
-        $this->service->update($id, $data);
-        return $this->render('admin/categories', []);
+        $this->service->update($data['id'], $data);
+        return $this->redirect('/admin/categories');
     }
 
     public function delete(Request $request)
     {
         $id = $request->getBody()['id'];
         $this->service->deleteInstance($id);
-        return $this->render('admin/categories', []);
+        return $this->redirect('/admin/categories');
 
 
     }
 
-    private function redirect(string $string)
-    {
-        header("Location: $string");
-    }
+
 
 
 }

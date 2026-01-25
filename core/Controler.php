@@ -15,4 +15,10 @@ class Controler
 
     }
 
+    public function redirect(string $string)
+    {
+        header("Location: $string");
+        exit;
+    }
+
 }

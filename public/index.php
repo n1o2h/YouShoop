@@ -3,6 +3,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 use App\controllers\AdminController;
 use App\controllers\AuthController;
 use App\controllers\CategoryController;
+use App\controllers\DashboardController;
 use App\controllers\ProductController;
 use App\controllers\SiteController;
 use App\controllers\UserController;
@@ -56,6 +57,8 @@ $app->router->post('/admin/categories/delete', [CategoryController::class, 'dele
 /* product */
 
 $app->router->get('/admin/dashboard', [ProductController::class, 'index']);
+
+//$app->router->get('/admin/dashboard/sta', [DashboardController::class, 'index']);
 
 /* CRUD produits */
 $app->router->post('/admin/products/store', [ProductController::class, 'store']);

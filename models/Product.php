@@ -7,13 +7,16 @@ use App\core\DBModel;
 class Product extends  DBModel
 {
     public int $id;
+
     public string $name;
     public string $description;
-    public string $status;
+    public string $status = '0';
     public float $price;
-    public string $imagePath;
     public int $stock;
-    public array $commandeItem = [];
+    public ?string $image_path;
+
+    public ?int $category_id;
+    public ?int $commande_item_id = null;
     public ?Category $category = null;
     public ?Admin $createdBy = null;
     public array $pannierItem = [];
@@ -73,15 +76,9 @@ class Product extends  DBModel
         $this->price = $price;
     }
 
-    public function getImagePath(): string
-    {
-        return $this->imagePath;
-    }
 
-    public function setImagePath(string $imagePath): void
-    {
-        $this->imagePath = $imagePath;
-    }
+
+
 
     public function getStock(): int
     {
@@ -93,20 +90,13 @@ class Product extends  DBModel
         $this->stock = $stock;
     }
 
-    public function getCommandeItem(): array
-    {
-        return $this->commandeItem;
-    }
-
-    public function setCommandeItem(array $commandeItem): void
-    {
-        $this->commandeItem = $commandeItem;
-    }
-
     public function getCategory(): Category
     {
         return $this->category;
     }
+
+
+
 
     public function setCategory(Category $category): void
     {
@@ -159,5 +149,35 @@ class Product extends  DBModel
             'price' => [self::RULE_REQUIRED],
             'stock' => [self::RULE_REQUIRED],
         ];
+    }
+
+    public function getCommandeItemId(): ?int
+    {
+        return $this->commande_item_id;
+    }
+
+    public function setCommandeItemId(?int $commande_item_id): void
+    {
+        $this->commande_item_id = $commande_item_id;
+    }
+
+    public function getImagePath(): string
+    {
+        return $this->image_path;
+    }
+
+    public function setImagePath(string $image_path): void
+    {
+        $this->image_path = $image_path;
+    }
+
+    public function getCategoryId(): int
+    {
+        return $this->category_id;
+    }
+
+    public function setCategoryId(int $category_id): void
+    {
+        $this->category_id = $category_id;
     }
 }

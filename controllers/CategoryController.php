@@ -31,18 +31,6 @@ class CategoryController extends Controler
         return $this->redirect('/admin/categories');
     }
 
-    /*public function edit(Request $request)
-    {
-        $id = $request->getBody()['id'] ?? null;
-        $categories = $this->service->findAll();
-        $categoryEdit = $this->service->findOne($id);
-
-        return $this->render("admin/categories/index",
-            ['categories' => $categories,
-                'categoryEdit' => $categoryEdit
-            ]);
-    }*/
-
     public function update(Request $request)
     {
         $data = $request->getBody();

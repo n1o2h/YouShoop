@@ -71,4 +71,9 @@ class User extends  UserModel
     {
         return $this->firstname . ' ' . $this->lastname;
     }
+
+    public function getDisplayEmail(): string
+    {
+        return $this->email;
+    }
 }

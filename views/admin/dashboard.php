@@ -115,7 +115,9 @@ use App\service\DashboardService;
                 <th class="p-6 text-xs uppercase tracking-widest font-bold text-right">Actions</th>
             </tr>
             </thead>
+            <?php if(count($products) > 0) : ?>
             <tbody class="divide-y divide-gray-50 font-medium text-slate-700">
+
             <?php foreach ($products as $product): ?>
                 <tr class="hover:bg-gray-50/50 transition">
                     <td class="p-6 flex items-center gap-4">
@@ -164,6 +166,10 @@ use App\service\DashboardService;
                 </tr>
             <?php endforeach; ?>
             </tbody>
+            <?php else : ?>
+                <h1 class="text-center text-gray-500">Aucun produits est ajouter</h1>
+            <?php endif;?>
+
         </table>
     </div>
 

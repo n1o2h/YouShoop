@@ -12,7 +12,7 @@
             <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4 shadow-lg shadow-blue-500/40 transform -rotate-6">
                 <i class="ti ti-lock text-white text-3xl"></i>
             </div>
-            <h1 class="text-2xl font-bold text-white relative z-10">Connexion <span class="text-blue-400">ElectroShop</span></h1>
+            <h1 class="text-2xl font-bold text-white relative z-10">Connexion <span class="text-blue-400">You Shop</span></h1>
             <p class="text-slate-400 text-sm mt-2 relative z-10">Entrez vos accès pour gérer vos commandes</p>
         </div>
 
@@ -45,9 +45,6 @@
     </div>
 
 <style>
-    /* IMPORTANT : Pour que ton objet Form::$field() hérite du look Tech,
-       on injecte du CSS pour cibler les inputs générés par ton PHP
-    */
     .custom-form-tech label {
         display: block;
         font-size: 0.875rem;
@@ -72,7 +69,6 @@
         box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
     }
 
-    /* Style du bouton généré par $form->button() */
     .custom-form-tech button {
         width: 100%;
         background-color: #2563eb;
@@ -90,7 +86,6 @@
         box-shadow: 0 15px 20px -3px rgba(37, 99, 235, 0.4);
     }
 
-    /* Gestion des erreurs (si ton framework génère la classe is-invalid) */
     .custom-form-tech .invalid-feedback {
         color: #ef4444;
         font-size: 0.75rem;

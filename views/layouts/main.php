@@ -82,7 +82,7 @@ use App\core\Application;
                 <i class="ti ti-user-circle text-xl"></i>
                 <span class="hidden sm:block">Connexion</span>
             </a>
-            <a href="#" class="relative hover:text-blue-600 transition">
+            <a href="/login" class="relative hover:text-blue-600 transition">
                 <div class="p-2 bg-gray-100 rounded-full hover:bg-blue-50 transition">
                     <i class="ti ti-shopping-cart text-xl"></i>
                 </div>

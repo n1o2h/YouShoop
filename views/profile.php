@@ -1,16 +1,11 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h1 class="card-title mb-3">Welcome to My MVC Project</h1>
-                    <p class="card-text mb-4">
-                        this is profile
-                    </p>
-                    <a href="/login" class="btn btn-primary btn-lg me-2">Login</a>
-                    <a href="/register" class="btn btn-outline-primary btn-lg">Register</a>
-                </div>
-            </div>
-        </div>
+<div class="container mx-auto mt-10">
+    <div class="max-w-xl mx-auto bg-white rounded-2xl shadow p-8 text-center">
+        <h1 class="text-3xl font-bold mb-4">Profil de <?= $user->getDisplayName() ?></h1>
+        <p class="text-gray-600 mb-4">Email : <?= $user->email ?> </p>
+        <p class="text-gray-600 mb-4">Created At : <?= $user->created_at ?>  </p>
+
+        <a href="/logout" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition">
+            Déconnexion
+        </a>
     </div>
 </div>

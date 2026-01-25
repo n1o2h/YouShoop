@@ -128,9 +128,6 @@ abstract  class Model
 
     public function getFirstError($attribue)
     {
-        #echo'<pre>';
-        #var_dump($this->errors);
-        #echo '</pre>';
         return empty($this->errors[$attribue][0]) ? '': $this->errors[$attribue][0] ;
     }
 

@@ -13,7 +13,7 @@
             <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4 shadow-lg shadow-blue-500/40 transform -rotate-6">
                 <i class="ti ti-user-plus text-white text-3xl"></i>
             </div>
-            <h1 class="text-2xl font-bold text-white relative z-10">Rejoindre <span class="text-blue-400">ElectroShop</span></h1>
+            <h1 class="text-2xl font-bold text-white relative z-10">Rejoindre <span class="text-blue-400">You Shop</span></h1>
             <p class="text-slate-400 text-sm mt-2 relative z-10">Créez votre compte pour commencer vos achats</p>
         </div>
 
@@ -62,7 +62,6 @@
 </div>
 
 <style>
-    /* On garde le même style CSS que le login pour l'uniformité */
     .custom-form-tech label {
         display: block;
         font-size: 0.875rem;
@@ -107,7 +106,6 @@
         box-shadow: 0 15px 20px -3px rgba(37, 99, 235, 0.4);
     }
 
-    /* Gestion des erreurs */
     .custom-form-tech .invalid-feedback {
         color: #ef4444;
         font-size: 0.75rem;

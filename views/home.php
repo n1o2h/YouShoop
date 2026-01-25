@@ -1,4 +1,17 @@
+<?php
 
+use App\core\Application;
+use App\models\Category;
+use App\models\Product;
+
+/**
+ * @var Product[] $products
+ * @var Category[] $categories
+ * @var  $stats
+ *
+ */
+
+?>
 <section class="relative bg-slate-900 overflow-hidden">
     <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-blue-600 blur-3xl opacity-20"></div>
     <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-purple-600 blur-3xl opacity-20"></div>
@@ -77,7 +90,7 @@
                     <i class="ti ti-device-laptop text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-slate-700 group-hover:text-blue-600">PC Portables</h3>
-                <span class="text-xs text-gray-400">120 produits</span>
+                <span class="text-xs text-gray-400">12 produits</span>
             </a>
 
             <a href="#"
@@ -134,96 +147,42 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-            <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 group overflow-hidden border border-gray-100">
-                <div class="relative p-6 bg-gray-50 h-64 flex items-center justify-center">
-                    <span class="absolute top-4 left-4 bg-black text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Premium</span>
-                    <i class="ti ti-device-laptop text-9xl text-gray-300 group-hover:scale-105 transition-transform duration-500"></i>
+            <?php foreach ($products as $product): ?>
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 group overflow-hidden border border-gray-100">
 
-                    <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0">
-                        <button class="bg-white text-slate-900 p-3 rounded-full shadow-lg hover:bg-blue-600 hover:text-white transition">
-                            <i class="ti ti-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-bold text-lg text-slate-900 leading-tight">MacBook Pro 14" M3</h3>
-                    </div>
-                    <p class="text-sm text-gray-500 mb-4 truncate">Puce Apple M3, 8 Go RAM, 512 Go SSD...</p>
-                    <div class="flex items-center justify-between mt-4">
-                        <div>
-                            <span class="block text-xl font-bold text-slate-900">1 599 €</span>
-                            <span class="text-xs text-green-600 font-medium">En stock</span>
+                    <div class="relative p-6 bg-gray-50 h-64 flex items-center justify-center">
+                        <span class="absolute top-4 left-4 bg-black text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Premium</span>
+                        <i class="ti ti-device-laptop text-9xl text-gray-300 group-hover:scale-105 transition-transform duration-500"></i>
+                        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0">
+                            <button class="bg-white text-slate-900 p-3 rounded-full shadow-lg hover:bg-blue-600 hover:text-white transition">
+                                <i class="ti ti-eye"></i>
+                            </button>
                         </div>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition flex items-center gap-2">
-                            <i class="ti ti-shopping-cart-plus"></i>
-                            <span>Ajouter</span>
-                        </button>
                     </div>
-                </div>
-            </div>
 
-            <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 group overflow-hidden border border-gray-100">
-                <div class="relative p-6 bg-gray-50 h-64 flex items-center justify-center">
-                    <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">-20%</span>
-                    <i class="ti ti-headset text-9xl text-gray-300 group-hover:scale-105 transition-transform duration-500"></i>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-bold text-lg text-slate-900 leading-tight mb-2">Sony WH-1000XM5</h3>
-                    <p class="text-sm text-gray-500 mb-4 truncate">Réduction de bruit active, 30h autonomie</p>
-                    <div class="flex items-center justify-between mt-4">
-                        <div>
-                            <span class="block text-xl font-bold text-slate-900">320 €</span>
-                            <span class="text-sm text-gray-400 line-through">399 €</span>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-slate-900 leading-tight"><?= $product->getName() ?></h3>
                         </div>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition flex items-center gap-2">
-                            <i class="ti ti-shopping-cart-plus"></i>
-                            <span>Ajouter</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 group overflow-hidden border border-gray-100">
-                <div class="relative p-6 bg-gray-50 h-64 flex items-center justify-center">
-                    <i class="ti ti-device-gamepad-2 text-9xl text-gray-300 group-hover:scale-105 transition-transform duration-500"></i>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-bold text-lg text-slate-900 leading-tight mb-2">PS5 DualSense Edge</h3>
-                    <p class="text-sm text-gray-500 mb-4 truncate">Manette pro sans fil personnalisable</p>
-                    <div class="flex items-center justify-between mt-4">
-                        <div>
-                            <span class="block text-xl font-bold text-slate-900">239 €</span>
-                            <span class="text-xs text-orange-500 font-medium">Stock faible</span>
+                        <p class="text-sm text-gray-500 mb-4 truncate"><?= $product->getDescription() ?></p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div>
+                                <span class="block text-xl font-bold text-slate-900"><?= $product->getPrice()?>€</span>
+                                <span class="text-xs text-green-600 font-medium"></span>
+                            </div>
+                            <form action="/cart/add" method="POST">
+                                <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition flex items-center gap-2">
+                                    <i class="ti ti-shopping-cart-plus"></i>
+                                    <span>Ajouter</span>
+                                </button>
+                            </form>
                         </div>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition flex items-center gap-2">
-                            <i class="ti ti-shopping-cart-plus"></i>
-                            <span>Ajouter</span>
-                        </button>
                     </div>
-                </div>
-            </div>
 
-            <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 group overflow-hidden border border-gray-100">
-                <div class="relative p-6 bg-gray-50 h-64 flex items-center justify-center">
-                    <span class="absolute top-4 left-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">New</span>
-                    <i class="ti ti-device-watch text-9xl text-gray-300 group-hover:scale-105 transition-transform duration-500"></i>
                 </div>
-                <div class="p-6">
-                    <h3 class="font-bold text-lg text-slate-900 leading-tight mb-2">Apple Watch Ultra 2</h3>
-                    <p class="text-sm text-gray-500 mb-4 truncate">Titane, GPS + Cellular, Bracelet Océan</p>
-                    <div class="flex items-center justify-between mt-4">
-                        <div>
-                            <span class="block text-xl font-bold text-slate-900">899 €</span>
-                        </div>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition flex items-center gap-2">
-                            <i class="ti ti-shopping-cart-plus"></i>
-                            <span>Ajouter</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
+            <?php endforeach; ?>
         </div>
 
         <div class="mt-12 text-center">

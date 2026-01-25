@@ -67,7 +67,7 @@ use App\models\Category;
                     <p class="text-gray-400 text-xs font-bold mt-1 uppercase tracking-widest">X Produits liés</p>
 
                     <div class="mt-6 pt-6 border-t border-gray-50">
-                        <a href="/admin"
+                        <a href="/admin/dashboard"
                            class="text-blue-600 text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all">
                             Voir les produits <i class="ti ti-arrow-right"></i>
                         </a>

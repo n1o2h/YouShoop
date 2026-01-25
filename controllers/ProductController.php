@@ -21,14 +21,20 @@ class ProductController extends Controler
         $this->dashboardService = new DashboardService();
     }
 
-    public function index(): array|bool|string
+    public function index(Request $request): array|bool|string
     {
-        $products = $this->productService->findAll();
+
         $products = $this->productService->findAll();
         $categories = $this->categoryService->findAll();
         $stats = $this->dashboardService->getStats();
-
-        return $this->render('admin/dashboard', [
+        if(str_starts_with($request->getPath(), '/admin')) {
+            return $this->render('admin/dashboard', [
+                'products' => $products,
+                'categories' => $categories,
+                'stats' => $stats,
+            ]);
+        }
+        return $this->render('user/dashboard', [
             'products' => $products,
             'categories' => $categories,
             'stats' => $stats,
@@ -54,8 +60,7 @@ class ProductController extends Controler
     public function update(Request $request)
     {
         $data = $request->getBody();
-//        var_dump($data);
-//        exit;
+
         $this->productService->update($data['id'], $data);
         return $this->redirect('/admin/dashboard');
     }

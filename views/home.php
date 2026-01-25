@@ -11,6 +11,7 @@ use App\models\Product;
  *
  */
 
+
 ?>
 <section class="relative bg-slate-900 overflow-hidden">
     <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-blue-600 blur-3xl opacity-20"></div>

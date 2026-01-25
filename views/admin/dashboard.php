@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 
 use App\core\Application;
 use App\models\Category;
@@ -10,12 +13,9 @@ use App\service\DashboardService;
  * @var Category[] $categories
  * @var  $stats
  */
-//foreach ($products as $product){
-//var_dump($product->getId());
-//
-//}
-//exit;
+
 ?>
+
 <div class="flex justify-between items-center mb-10 bg-white p-4 rounded-3xl border border-gray-100 shadow-sm">
     <div class="flex items-center gap-4">
         <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center font-black text-xl shadow-inner">
@@ -131,7 +131,7 @@ use App\service\DashboardService;
                     </td>
                     <td class="p-6">
                     <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold">
-                        <?= htmlspecialchars($product->category->getName() ?? 'Indéfini') ?>
+                        <?= htmlspecialchars($product->category ? $product->category->getName() : '—') ?>
                     </span>
                     </td>
                     <td class="p-6 font-bold"><?= number_format($product->getPrice(), 2, ',', ' ') ?> €</td>

@@ -95,7 +95,7 @@ use App\models\Product;
                     <div class="w-14 h-14 mx-auto bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <i class="ti ti-device-laptop text-2xl"></i>
                     </div>
-                    <h3 class="font-bold text-slate-700 group-hover:text-blue-600"><?= $product->category->getName() ?> </h3>
+                    <h3 class="font-bold text-slate-700 group-hover:text-blue-600"><?= $product->category ? $product->category->getName() : 'Sans catégorie' ?></h3>
                     <span class="text-xs text-gray-400">X produits</span>
                 </a>
             <?php endforeach; ?>
